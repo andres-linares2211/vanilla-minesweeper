@@ -1,5 +1,6 @@
-import { Board } from './Board.js';
+import { Board } from './game/Board.js';
 import { Chronometer } from './Chronometer.js';
+import { paintTile } from './ui/TilePainter.js';
 
 const board = document.getElementById('root');
 const counter = document.getElementById('counter');
@@ -13,6 +14,7 @@ boardSizeInput.addEventListener('change', () => {
 minesInput.addEventListener('change', () => initialize());
 
 let isTimeRunning = false;
+let gameOver = false;
 
 let game: Board;
 let chronometer: Chronometer;
@@ -24,9 +26,9 @@ function initialize() {
   const mines = minesInput.value;
 
   game = new Board(+boardSize, +mines, () => {
-    alert('shit');
     chronometer.stop();
     isTimeRunning = false;
+    gameOver = true;
 
     if (counter) counter.innerHTML = chronometer.displayTime;
   });
@@ -47,27 +49,10 @@ function paint() {
   if (board) board.innerHTML = '';
 
   game.tiles.forEach((tile) => {
-    const buttonElement = document.createElement('button');
-
-    if (tile.status === 'FREE') {
-      buttonElement.disabled = true;
-    }
-
-    if (tile.status === 'MARK') {
-      buttonElement.appendChild(document.createTextNode('🚩'));
-      buttonElement.classList.add('small');
-    }
-
-    if (tile.status === 'QUESTION') {
-      buttonElement.appendChild(document.createTextNode('❓'));
-      buttonElement.classList.add('small');
-    }
-
-    if (tile.status === 'FREE' && tile.value !== 0) {
-      const text = document.createTextNode(tile.value.toString());
-      buttonElement.appendChild(text);
-
-      buttonElement.classList.add(`value-${tile.value}`);
+    const buttonElement = paintTile(tile);
+    if (gameOver) {
+      board?.appendChild(buttonElement);
+      return;
     }
 
     buttonElement.addEventListener('click', () => {

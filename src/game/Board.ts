@@ -6,15 +6,16 @@ export class Board {
   private mines: number;
   tiles: Tile[];
   private onGameOver: Function;
+  private firstExplosionSet: boolean;
 
   constructor(size: number, mines: number, onGameOver: Function) {
     this.size = size;
     this.mines = mines;
     this.tiles = [];
     this.onGameOver = onGameOver;
+    this.firstExplosionSet = false;
 
     this.initialize();
-    console.log(this.tiles);
   }
 
   initialize() {
@@ -28,8 +29,15 @@ export class Board {
     const newStatus = tile?.select();
 
     if (newStatus === 'BOMB') {
+      if (!this.firstExplosionSet) {
+        this.firstExplosionSet = true;
+        tile.firstExplosion = true;
+      }
+
       this.onGameOver();
-      this.initialize();
+      this.tiles
+        .filter((tile) => tile.hasMine && tile.status === 'INITIAL')
+        .forEach((tile) => this.select({ x: tile.x, y: tile.y }));
     } else if (newStatus === 'FREE' && tile.value === 0) {
       this.showAdjacentTiles(tile);
     }
