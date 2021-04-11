@@ -28,7 +28,7 @@ export class Chronometer {
    */
   private formatTime(milliseconds: number): string {
     const minutes = Math.floor(milliseconds / 1000 / 60);
-    const seconds = Math.floor(milliseconds / 1000);
+    const seconds = Math.floor((milliseconds / 1000) % 60);
     const fraction = Math.floor(milliseconds % 1000);
 
     const formattedMinutes = minutes.toString().padStart(2, '0');
