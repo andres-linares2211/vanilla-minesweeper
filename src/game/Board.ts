@@ -4,16 +4,15 @@ import { Tile } from './Tile.js';
 export class Board {
   private size: number;
   private mines: number;
-  tiles: Tile[];
   private onGameOver: Function;
-  private firstExplosionSet: boolean;
+
+  tiles: Tile[] = [];
+  private firstExplosionSet = false;
 
   constructor(size: number, mines: number, onGameOver: Function) {
     this.size = size;
     this.mines = mines;
-    this.tiles = [];
     this.onGameOver = onGameOver;
-    this.firstExplosionSet = false;
 
     this.initialize();
   }
@@ -29,15 +28,7 @@ export class Board {
     const newStatus = tile?.select();
 
     if (newStatus === 'BOMB') {
-      if (!this.firstExplosionSet) {
-        this.firstExplosionSet = true;
-        tile.firstExplosion = true;
-      }
-
-      this.onGameOver();
-      this.tiles
-        .filter((tile) => tile.hasMine && tile.status === 'INITIAL')
-        .forEach((tile) => this.select({ x: tile.x, y: tile.y }));
+      this.prepareGameOver(tile);
     } else if (newStatus === 'FREE' && tile.value === 0) {
       this.showAdjacentTiles(tile);
     }
@@ -45,6 +36,19 @@ export class Board {
 
   mark({ x, y }: Coordinate) {
     return this.getTile({ x, y })?.mark();
+  }
+
+  private prepareGameOver(tile: Tile) {
+    if (!this.firstExplosionSet) {
+      this.firstExplosionSet = true;
+      tile.firstExplosion = true;
+    }
+
+    this.tiles
+      .filter((tile) => tile.hasMine && tile.status === 'INITIAL')
+      .forEach((tile) => this.select({ x: tile.x, y: tile.y }));
+
+    this.onGameOver();
   }
 
   private showAdjacentTiles(tile: Tile) {
