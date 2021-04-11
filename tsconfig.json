@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
+    "target": "es5",
     "module": "ESNext",
-    "target": "ES6",
-    "strict": true
+    "lib": ["es6"],
+    "outDir": "dist",
+    "rootDir": "src",
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "**/*.spec.ts"
-  ]
+  "exclude": ["src/**/*.spec.ts"]
 }
