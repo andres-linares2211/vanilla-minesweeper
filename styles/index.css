@@ -4,7 +4,7 @@
 
   --tile-light-border: #fbfbfb;
   --tile-dark-border: #848484;
-  --tile-border-size: 0.2em;
+  --tile-border-size: 0.33rem;
 
   --color-number-one: #0000ff;
   --color-number-two: #008000;
@@ -27,6 +27,10 @@
   border-right-color: var(--tile-dark-border);
   font-size: 2rem;
   font-weight: bolder;
+}
+
+.board > button.small {
+  font-size: 1.4rem;
 }
 
 .board > button.value-1 {

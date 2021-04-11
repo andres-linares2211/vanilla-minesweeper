@@ -6,7 +6,7 @@ let game: Board;
 initialize();
 
 function initialize() {
-  game = new Board(10, 20, () => {
+  game = new Board(10, 10, () => {
     alert('shit');
   });
 
@@ -23,6 +23,16 @@ function paint() {
       buttonElement.disabled = true;
     }
 
+    if (tile.status === 'MARK') {
+      buttonElement.appendChild(document.createTextNode('🚩'));
+      buttonElement.classList.add('small');
+    }
+
+    if (tile.status === 'QUESTION') {
+      buttonElement.appendChild(document.createTextNode('❓'));
+      buttonElement.classList.add('small');
+    }
+
     if (tile.status === 'FREE' && tile.value !== 0) {
       const text = document.createTextNode(tile.value.toString());
       buttonElement.appendChild(text);
@@ -30,12 +40,15 @@ function paint() {
       buttonElement.classList.add(`value-${tile.value}`);
     }
 
-    if (tile.hasMine) {
-      buttonElement.appendChild(document.createTextNode('B'));
-    }
-
     buttonElement.addEventListener('click', () => {
       game.select({ x: tile.x, y: tile.y });
+      paint();
+    });
+
+    buttonElement.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
+
+      game.mark({ x: tile.x, y: tile.y });
       paint();
     });
 
