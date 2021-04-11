@@ -8,6 +8,9 @@ export class Tile {
   constructor(x: number, y: number) {
     this.x = x;
     this.y = y;
+    this.value = 0;
+    this.status = 'INITIAL';
+    this.hasMine = false;
   }
 
   select() {

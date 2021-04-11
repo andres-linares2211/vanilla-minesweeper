@@ -1,4 +1,4 @@
-import { Tile } from './Tile';
+import { Tile } from './Tile.js';
 
 export class Board {
   size: number;
@@ -8,6 +8,9 @@ export class Board {
   constructor(size: number, mines: number) {
     this.size = size;
     this.mines = mines;
+    this.tiles = [];
+
+    this.initialize();
   }
 
   initialize() {
@@ -54,7 +57,7 @@ export class Board {
       for (let j = -1; j <= 1; j++) {
         const nextX = x + i;
         const nextY = y + j;
-        const closeTile = this.tiles?.find((tile) => tile.x === nextX && tile.y === nextY);
+        const closeTile = this.tiles.find((tile) => tile.x === nextX && tile.y === nextY);
 
         if (closeTile?.hasMine) mines++;
       }
