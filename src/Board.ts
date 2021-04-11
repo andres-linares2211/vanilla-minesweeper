@@ -4,7 +4,7 @@ import { Tile } from './Tile.js';
 export class Board {
   private size: number;
   private mines: number;
-  private tiles: Tile[];
+  tiles: Tile[];
   private onGameOver: Function;
 
   constructor(size: number, mines: number, onGameOver: Function) {
@@ -14,6 +14,7 @@ export class Board {
     this.onGameOver = onGameOver;
 
     this.initialize();
+    console.log(this.tiles);
   }
 
   initialize() {
@@ -29,7 +30,7 @@ export class Board {
     if (newStatus === 'BOMB') {
       this.onGameOver();
       this.initialize();
-    } else if (newStatus === 'FREE') {
+    } else if (newStatus === 'FREE' && tile.value === 0) {
       this.showAdjacentTiles(tile);
     }
   }
@@ -44,7 +45,13 @@ export class Board {
         const x = tile.x + i;
         const y = tile.y + j;
 
-        this.select({ x, y });
+        if (x < 1 || x >= this.size) continue;
+        if (y < 1 || y >= this.size) continue;
+        if (i === 0 && j === 0) continue;
+
+        const adjacentTile = this.getTile({ x, y });
+
+        if (adjacentTile?.status === 'INITIAL') this.select({ x, y });
       }
     }
   }
@@ -58,7 +65,3 @@ export interface Coordinate {
   x: number;
   y: number;
 }
-
-const board = new Board(10, 10, () => {
-  alert('shit');
-});

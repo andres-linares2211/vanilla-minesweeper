@@ -1,0 +1,44 @@
+:root {
+  --background-color: #c0c0c0;
+  --board-border-color: #929292;
+
+  --tile-light-border: #fbfbfb;
+  --tile-dark-border: #848484;
+  --tile-border-size: 0.2em;
+
+  --color-number-one: #0000ff;
+  --color-number-two: #008000;
+  --color-number-three: #ff0000;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 50px);
+  grid-template-rows: repeat(10, 50px);
+}
+
+.board > button {
+  background: var(--background-color);
+  cursor: pointer;
+  border: var(--tile-border-size) solid var(--tile-light-border);
+  border-bottom-color: var(--tile-dark-border);
+  border-right-color: var(--tile-dark-border);
+  font-size: 2rem;
+  font-weight: bolder;
+}
+
+.board > button.value-1 {
+  color: var(--color-number-one);
+}
+
+.board > button.value-2 {
+  color: var(--color-number-two);
+}
+
+.board > button.value-3 {
+  color: var(--color-number-three);
+}
+
+.board > .free {
+  border: 1px solid var(--board-border-color);
+}

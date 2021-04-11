@@ -21,7 +21,7 @@ export class BoardGenerator {
   }
 
   private generateTiles() {
-    for (let i = 1; i <= this.size * this.size; i++) {
+    for (let i = 0; i < this.size * this.size; i++) {
       const { x, y } = this.getXandYPosition(i);
       this.tiles.push(new Tile(x, y));
     }
@@ -56,10 +56,13 @@ export class BoardGenerator {
 
     for (let i = -1; i <= 1; i++) {
       for (let j = -1; j <= 1; j++) {
-        if (x === 0 && y === 0) continue;
-
         const nextX = x + i;
         const nextY = y + j;
+
+        if (nextX < 1 || nextX > this.size) continue;
+        if (nextY < 1 || nextY > this.size) continue;
+        if (i === 0 && j === 0) continue;
+
         const closeTile = this.tiles.find((tile) => tile.x === nextX && tile.y === nextY);
 
         if (closeTile?.hasMine) mines++;
@@ -70,8 +73,8 @@ export class BoardGenerator {
   }
 
   private getXandYPosition(index: number): Coordinate {
-    const x = index % this.size;
-    const y = Math.floor(index / this.size);
+    const x = (index % this.size) + 1;
+    const y = Math.floor(index / this.size) + 1;
 
     return { x, y };
   }
