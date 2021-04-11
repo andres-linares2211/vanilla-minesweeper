@@ -1,80 +1,64 @@
+import { BoardGenerator } from './BoardGenerator.js';
 import { Tile } from './Tile.js';
 
 export class Board {
-  size: number;
-  mines: number;
-  tiles: Tile[];
+  private size: number;
+  private mines: number;
+  private tiles: Tile[];
+  private onGameOver: Function;
 
-  constructor(size: number, mines: number) {
+  constructor(size: number, mines: number, onGameOver: Function) {
     this.size = size;
     this.mines = mines;
     this.tiles = [];
+    this.onGameOver = onGameOver;
 
     this.initialize();
   }
 
   initialize() {
-    this.generateTiles();
-    this.plantBombs();
-    this.setTileValues();
+    this.tiles = new BoardGenerator(this.size, this.mines).generateBoard();
   }
 
-  generateTiles() {
-    for (let i = 1; i <= this.size * this.size; i++) {
-      const { x, y } = this.getXandYPosition(i);
-      this.tiles.push(new Tile(x, y));
+  select({ x, y }: Coordinate) {
+    const tile = this.getTile({ x, y });
+    if (!tile) return;
+
+    const newStatus = tile?.select();
+
+    if (newStatus === 'BOMB') {
+      this.onGameOver();
+      this.initialize();
+    } else if (newStatus === 'FREE') {
+      this.showAdjacentTiles(tile);
     }
   }
 
-  plantBombs() {
-    for (let i = 0; i < this.mines; i++) {
-      const randomIndex = Math.floor(Math.random() * this.tiles.length);
-      const randomTile = this.tiles[randomIndex];
-
-      if (randomTile.hasMine) {
-        i--;
-        continue;
-      }
-
-      randomTile.hasMine = true;
-    }
+  mark({ x, y }: Coordinate) {
+    return this.getTile({ x, y })?.mark();
   }
 
-  setTileValues() {
-    for (let tile of this.tiles) {
-      if (tile.hasMine) continue;
-
-      const minesAround = this.getMinesAround(tile);
-      tile.value = minesAround;
-    }
-  }
-
-  getMinesAround(tile: Tile): number {
-    let mines = 0;
-    const { x, y } = tile;
-
+  private showAdjacentTiles(tile: Tile) {
     for (let i = -1; i <= 1; i++) {
       for (let j = -1; j <= 1; j++) {
-        const nextX = x + i;
-        const nextY = y + j;
-        const closeTile = this.tiles.find((tile) => tile.x === nextX && tile.y === nextY);
+        const x = tile.x + i;
+        const y = tile.y + j;
 
-        if (closeTile?.hasMine) mines++;
+        this.select({ x, y });
       }
     }
-
-    return mines;
   }
 
-  getXandYPosition(index: number): Coordinates {
-    const x = index % this.size;
-    const y = Math.floor(index / this.size);
-
-    return { x, y };
+  private getTile({ x, y }: Coordinate) {
+    return this.tiles.find((tile) => tile.x === x && tile.y === y);
   }
 }
 
-interface Coordinates {
+interface Coordinate {
   x: number;
   y: number;
 }
+
+const board = new Board(10, 10, () => {
+  alert('shit');
+});
