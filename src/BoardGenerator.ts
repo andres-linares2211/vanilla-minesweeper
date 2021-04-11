@@ -1,3 +1,4 @@
+import { Coordinate } from './Board.js';
 import { Tile } from './Tile.js';
 
 export class BoardGenerator {
@@ -74,9 +75,4 @@ export class BoardGenerator {
 
     return { x, y };
   }
-}
-
-interface Coordinate {
-  x: number;
-  y: number;
 }

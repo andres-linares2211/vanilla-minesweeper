@@ -54,7 +54,7 @@ export class Board {
   }
 }
 
-interface Coordinate {
+export interface Coordinate {
   x: number;
   y: number;
 }
