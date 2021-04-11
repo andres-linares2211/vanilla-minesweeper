@@ -1,5 +1,5 @@
 import { Board } from './game/Board.js';
-import { Chronometer } from './Chronometer.js';
+import { Chronometer } from './utils/Chronometer.js';
 import { paintTile } from './ui/TilePainter.js';
 
 const board = document.getElementById('root');
