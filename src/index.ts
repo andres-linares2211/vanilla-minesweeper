@@ -13,6 +13,7 @@ boardSizeInput.addEventListener('change', () => {
 minesInput.addEventListener('change', () => initialize());
 
 let isTimeRunning = false;
+let gameOver = false;
 
 let game: Board;
 let chronometer: Chronometer;
@@ -27,6 +28,7 @@ function initialize() {
     alert('shit');
     chronometer.stop();
     isTimeRunning = false;
+    gameOver = true;
 
     if (counter) counter.innerHTML = chronometer.displayTime;
   });
@@ -51,6 +53,11 @@ function paint() {
 
     if (tile.status === 'FREE') {
       buttonElement.disabled = true;
+
+      if (tile.value !== 0) {
+        buttonElement.appendChild(document.createTextNode(tile.value.toString()));
+        buttonElement.classList.add(`value-${tile.value}`);
+      }
     }
 
     if (tile.status === 'MARK') {
@@ -63,11 +70,9 @@ function paint() {
       buttonElement.classList.add('small');
     }
 
-    if (tile.status === 'FREE' && tile.value !== 0) {
-      const text = document.createTextNode(tile.value.toString());
-      buttonElement.appendChild(text);
-
-      buttonElement.classList.add(`value-${tile.value}`);
+    if (tile.status === 'BOMB') {
+      buttonElement.appendChild(document.createTextNode('💣'));
+      buttonElement.classList.add('small');
     }
 
     buttonElement.addEventListener('click', () => {

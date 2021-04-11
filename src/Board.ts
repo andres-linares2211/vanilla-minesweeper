@@ -14,7 +14,6 @@ export class Board {
     this.onGameOver = onGameOver;
 
     this.initialize();
-    console.log(this.tiles);
   }
 
   initialize() {
@@ -29,7 +28,7 @@ export class Board {
 
     if (newStatus === 'BOMB') {
       this.onGameOver();
-      this.initialize();
+      // this.initialize();
     } else if (newStatus === 'FREE' && tile.value === 0) {
       this.showAdjacentTiles(tile);
     }
