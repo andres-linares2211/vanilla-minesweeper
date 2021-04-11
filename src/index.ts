@@ -1,5 +1,6 @@
 import { Board } from './Board.js';
 import { Chronometer } from './Chronometer.js';
+import { paintTile } from './ui/TilePainter.js';
 
 const board = document.getElementById('root');
 const counter = document.getElementById('counter');
@@ -49,31 +50,7 @@ function paint() {
   if (board) board.innerHTML = '';
 
   game.tiles.forEach((tile) => {
-    const buttonElement = document.createElement('button');
-
-    if (tile.status === 'FREE') {
-      buttonElement.disabled = true;
-
-      if (tile.value !== 0) {
-        buttonElement.appendChild(document.createTextNode(tile.value.toString()));
-        buttonElement.classList.add(`value-${tile.value}`);
-      }
-    }
-
-    if (tile.status === 'MARK') {
-      buttonElement.appendChild(document.createTextNode('🚩'));
-      buttonElement.classList.add('small');
-    }
-
-    if (tile.status === 'QUESTION') {
-      buttonElement.appendChild(document.createTextNode('❓'));
-      buttonElement.classList.add('small');
-    }
-
-    if (tile.status === 'BOMB') {
-      buttonElement.appendChild(document.createTextNode('💣'));
-      buttonElement.classList.add('small');
-    }
+    const buttonElement = paintTile(tile);
 
     buttonElement.addEventListener('click', () => {
       if (!isTimeRunning) startCounter();
