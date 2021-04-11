@@ -68,7 +68,7 @@ export class BoardGenerator {
     return mines;
   }
 
-  private getXandYPosition(index: number): Coordinates {
+  private getXandYPosition(index: number): Coordinate {
     const x = index % this.size;
     const y = Math.floor(index / this.size);
 
@@ -76,7 +76,7 @@ export class BoardGenerator {
   }
 }
 
-interface Coordinates {
+interface Coordinate {
   x: number;
   y: number;
 }
