@@ -49,6 +49,6 @@
   color: var(--color-number-five);
 }
 
-.board > .free {
-  border: 1px solid var(--board-border-color);
+.board > button:disabled {
+  border: calc(var(--tile-border-size) * 0.4) solid var(--board-border-color);
 }

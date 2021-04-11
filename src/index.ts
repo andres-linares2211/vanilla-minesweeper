@@ -20,7 +20,7 @@ function paint() {
     const buttonElement = document.createElement('button');
 
     if (tile.status === 'FREE') {
-      buttonElement.classList.add('free');
+      buttonElement.disabled = true;
     }
 
     if (tile.status === 'FREE' && tile.value !== 0) {
