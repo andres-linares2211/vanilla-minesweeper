@@ -1,13 +1,9 @@
-export class Chronometer {
-  private chronometer: number;
-  private initialTime: number;
-  private finalTime: number;
+const UPDATE_INTERVAL = 50;
 
-  constructor() {
-    this.chronometer = -1;
-    this.initialTime = -1;
-    this.finalTime = -1;
-  }
+export class Chronometer {
+  private chronometer!: number;
+  private initialTime!: number;
+  private finalTime!: number;
 
   start(updateCallback: Function) {
     this.initialTime = performance.now();
@@ -15,18 +11,21 @@ export class Chronometer {
     this.chronometer = setInterval(() => {
       this.finalTime = performance.now();
       updateCallback(this.displayTime);
-    }, 50);
+    }, UPDATE_INTERVAL);
   }
 
   stop() {
-    this.finalTime = performance.now();
     clearInterval(this.chronometer);
+    this.finalTime = performance.now();
   }
 
   get displayTime(): string {
     return this.formatTime(this.finalTime - this.initialTime);
   }
 
+  /**
+   * Transforms a given time in millisecond to the format: xx:xx.xxx
+   */
   private formatTime(milliseconds: number): string {
     const minutes = Math.floor(milliseconds / 1000 / 60);
     const seconds = Math.floor(milliseconds / 1000);
