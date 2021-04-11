@@ -6,7 +6,7 @@ let game: Board;
 initialize();
 
 function initialize() {
-  game = new Board(10, 10, () => {
+  game = new Board(10, 20, () => {
     alert('shit');
   });
 

@@ -45,8 +45,8 @@ export class Board {
         const x = tile.x + i;
         const y = tile.y + j;
 
-        if (x < 1 || x >= this.size) continue;
-        if (y < 1 || y >= this.size) continue;
+        if (x < 1 || x > this.size) continue;
+        if (y < 1 || y > this.size) continue;
         if (i === 0 && j === 0) continue;
 
         const adjacentTile = this.getTile({ x, y });
