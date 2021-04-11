@@ -5,9 +5,6 @@
   "main": "index.js",
   "author": "andres-linares2211 <andres.linares@omni.pro>",
   "license": "MIT",
-  "scripts": {
-    "tsc": "tsc scripts/Tile.ts"
-  },
   "devDependencies": {
     "typescript": "^4.2.4"
   }

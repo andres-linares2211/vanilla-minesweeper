@@ -1,8 +1,9 @@
-class Tile {
+export class Tile {
   x: number;
   y: number;
+  value: number;
   status: 'INITIAL' | 'FREE' | 'BOMB' | 'MARK' | 'QUESTION';
-  withMine: boolean;
+  hasMine: boolean;
 
   constructor(x: number, y: number) {
     this.x = x;
@@ -12,7 +13,7 @@ class Tile {
   select() {
     if (this.status !== 'INITIAL') return this.status;
 
-    this.status = this.withMine ? 'BOMB' : 'FREE';
+    this.status = this.hasMine ? 'BOMB' : 'FREE';
     return this.status;
   }
 
