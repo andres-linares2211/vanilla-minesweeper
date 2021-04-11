@@ -1,4 +1,4 @@
-import { Tile } from '../Tile.js';
+import { Tile } from '../game/Tile.js';
 
 export function paintTile(tile: Tile): HTMLButtonElement {
   const button = document.createElement('button');

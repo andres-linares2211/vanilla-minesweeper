@@ -1,4 +1,4 @@
-import { Board } from './Board.js';
+import { Board } from './game/Board.js';
 import { Chronometer } from './Chronometer.js';
 import { paintTile } from './ui/TilePainter.js';
 
