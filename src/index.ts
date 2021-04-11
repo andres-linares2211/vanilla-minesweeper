@@ -3,6 +3,15 @@ import { Chronometer } from './Chronometer.js';
 
 const board = document.getElementById('root');
 const counter = document.getElementById('counter');
+const boardSizeInput = document.getElementById('size') as HTMLInputElement;
+const minesInput = document.getElementById('mines') as HTMLInputElement;
+
+boardSizeInput.addEventListener('change', () => {
+  initialize();
+  board?.style.setProperty('--size', boardSizeInput.value);
+});
+minesInput.addEventListener('change', () => initialize());
+
 let isTimeRunning = false;
 
 let game: Board;
@@ -11,10 +20,15 @@ let chronometer: Chronometer;
 initialize();
 
 function initialize() {
-  game = new Board(10, 10, () => {
+  const boardSize = boardSizeInput.value;
+  const mines = minesInput.value;
+
+  game = new Board(+boardSize, +mines, () => {
     alert('shit');
     chronometer.stop();
     isTimeRunning = false;
+
+    if (counter) counter.innerHTML = chronometer.displayTime;
   });
 
   paint();

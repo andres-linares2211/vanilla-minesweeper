@@ -30,7 +30,6 @@ body {
 aside {
   width: 300px;
   background: var(--background-color);
-  margin-right: 2rem;
   padding: 1rem;
 }
 
@@ -42,10 +41,16 @@ aside #counter {
   justify-content: center;
 }
 
+.board-container {
+  display: grid;
+  place-content: center;
+  flex: 1;
+}
+
 .board {
   display: grid;
-  grid-template-columns: repeat(10, 50px);
-  grid-template-rows: repeat(10, 50px);
+  grid-template-columns: repeat(var(--size, 10), 50px);
+  grid-template-rows: repeat(var(--size, 10), 50px);
 }
 
 .board > button {
@@ -56,6 +61,7 @@ aside #counter {
   border-right-color: var(--tile-dark-border);
   font-size: 2rem;
   font-weight: bolder;
+  aspect-ratio: 1;
 }
 
 .board > button.small {
