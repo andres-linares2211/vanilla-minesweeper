@@ -26,7 +26,6 @@ function initialize() {
   const mines = minesInput.value;
 
   game = new Board(+boardSize, +mines, () => {
-    alert('shit');
     chronometer.stop();
     isTimeRunning = false;
     gameOver = true;
