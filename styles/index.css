@@ -41,6 +41,18 @@ aside #counter {
   justify-content: center;
 }
 
+aside form {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+}
+
+aside form input {
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
 .board-container {
   display: grid;
   place-content: center;
