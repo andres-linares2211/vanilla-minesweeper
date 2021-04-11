@@ -1,6 +1,10 @@
 import { Board } from './Board.js';
+import { Chronometer } from './Chronometer.js';
 
 const board = document.getElementById('root');
+const counter = document.getElementById('counter');
+let isTimeRunning = false;
+
 let game: Board;
 
 initialize();
@@ -11,6 +15,15 @@ function initialize() {
   });
 
   paint();
+}
+
+function startCounter() {
+  isTimeRunning = true;
+  const chronometer = new Chronometer();
+
+  chronometer.start((time: string) => {
+    if (counter) counter.innerHTML = time;
+  });
 }
 
 function paint() {
@@ -41,6 +54,7 @@ function paint() {
     }
 
     buttonElement.addEventListener('click', () => {
+      if (!isTimeRunning) startCounter();
       game.select({ x: tile.x, y: tile.y });
       paint();
     });

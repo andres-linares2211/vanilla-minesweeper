@@ -12,6 +12,35 @@
   --color-number-four: #000080;
   --color-number-five: #800000;
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  height: 100%;
+}
+
+aside {
+  width: 300px;
+  background: var(--background-color);
+  margin-right: 2rem;
+  padding: 1rem;
+}
+
+aside #counter {
+  font-family: monospace;
+  font-size: 2rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+}
 
 .board {
   display: grid;

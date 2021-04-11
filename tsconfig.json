@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "ESNext",
-    "lib": ["es6", "DOM"],
+    "lib": ["ESNext", "DOM"],
     "outDir": "dist",
     "rootDir": "src",
     "noImplicitAny": true,
