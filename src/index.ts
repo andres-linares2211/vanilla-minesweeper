@@ -50,6 +50,10 @@ function paint() {
 
   game.tiles.forEach((tile) => {
     const buttonElement = paintTile(tile);
+    if (gameOver) {
+      board?.appendChild(buttonElement);
+      return;
+    }
 
     buttonElement.addEventListener('click', () => {
       if (!isTimeRunning) startCounter();
