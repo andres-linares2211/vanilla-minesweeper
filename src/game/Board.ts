@@ -5,14 +5,16 @@ export class Board {
   private size: number;
   private mines: number;
   private onGameOver: Function;
+  private onGameWin: Function;
 
   tiles: Tile[] = [];
   private firstExplosionSet = false;
 
-  constructor(size: number, mines: number, onGameOver: Function) {
+  constructor(size: number, mines: number, onGameOver: Function, onGameWin: Function) {
     this.size = size;
     this.mines = mines;
     this.onGameOver = onGameOver;
+    this.onGameWin = onGameWin;
 
     this.initialize();
   }
@@ -32,23 +34,35 @@ export class Board {
     } else if (newStatus === 'FREE' && tile.value === 0) {
       this.showAdjacentTiles(tile);
     }
+
+    this.checkWinGame();
   }
 
   mark({ x, y }: Coordinate) {
     return this.getTile({ x, y })?.mark();
   }
 
+  private checkWinGame() {
+    const hasWon = this.tiles
+      .filter((tile) => !tile.hasMine)
+      .every((tile) => tile.status === 'FREE');
+
+    if (hasWon) {
+      this.onGameWin();
+    }
+  }
+
   private prepareGameOver(tile: Tile) {
     if (!this.firstExplosionSet) {
       this.firstExplosionSet = true;
       tile.firstExplosion = true;
+
+      this.onGameOver();
     }
 
     this.tiles
       .filter((tile) => tile.hasMine && tile.status === 'INITIAL')
       .forEach((tile) => this.select({ x: tile.x, y: tile.y }));
-
-    this.onGameOver();
   }
 
   private showAdjacentTiles(tile: Tile) {

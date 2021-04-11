@@ -25,13 +25,25 @@ function initialize() {
   const boardSize = boardSizeInput.value;
   const mines = minesInput.value;
 
-  game = new Board(+boardSize, +mines, () => {
-    chronometer.stop();
-    isTimeRunning = false;
-    gameOver = true;
+  game = new Board(
+    +boardSize,
+    +mines,
+    () => {
+      chronometer.stop();
+      isTimeRunning = false;
+      gameOver = true;
 
-    if (counter) counter.innerHTML = chronometer.displayTime;
-  });
+      if (counter) counter.innerHTML = chronometer.displayTime;
+    },
+    () => {
+      alert('Ganaste!');
+      chronometer.stop();
+      isTimeRunning = false;
+      gameOver = true;
+
+      if (counter) counter.innerHTML = chronometer.displayTime;
+    }
+  );
 
   paint();
 }
