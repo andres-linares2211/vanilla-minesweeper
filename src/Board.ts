@@ -28,7 +28,9 @@ export class Board {
 
     if (newStatus === 'BOMB') {
       this.onGameOver();
-      // this.initialize();
+      this.tiles
+        .filter((tile) => tile.hasMine && tile.status === 'INITIAL')
+        .forEach((tile) => this.select({ x: tile.x, y: tile.y }));
     } else if (newStatus === 'FREE' && tile.value === 0) {
       this.showAdjacentTiles(tile);
     }
