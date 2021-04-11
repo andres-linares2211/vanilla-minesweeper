@@ -6,12 +6,15 @@ const counter = document.getElementById('counter');
 let isTimeRunning = false;
 
 let game: Board;
+let chronometer: Chronometer;
 
 initialize();
 
 function initialize() {
   game = new Board(10, 10, () => {
     alert('shit');
+    chronometer.stop();
+    isTimeRunning = false;
   });
 
   paint();
@@ -19,7 +22,7 @@ function initialize() {
 
 function startCounter() {
   isTimeRunning = true;
-  const chronometer = new Chronometer();
+  chronometer = new Chronometer();
 
   chronometer.start((time: string) => {
     if (counter) counter.innerHTML = time;
