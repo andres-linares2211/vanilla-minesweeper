@@ -11,7 +11,7 @@ export function paintTile(tile: Tile): HTMLButtonElement {
     case 'QUESTION':
       return paintEmojiTile(button, '❓');
     case 'BOMB':
-      return paintBombTile(button);
+      return paintBombTile(tile, button);
   }
 
   return button;
@@ -35,10 +35,11 @@ function paintEmojiTile(button: HTMLButtonElement, emoji: string) {
   return button;
 }
 
-function paintBombTile(button: HTMLButtonElement) {
+function paintBombTile(tile: Tile, button: HTMLButtonElement) {
   const paintedButton = paintEmojiTile(button, '💣');
   paintedButton.disabled = true;
-  paintedButton.classList.add('exploded');
+
+  if (tile.firstExplosion) paintedButton.classList.add('exploded');
 
   return paintedButton;
 }

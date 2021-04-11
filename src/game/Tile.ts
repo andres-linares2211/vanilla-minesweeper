@@ -4,6 +4,7 @@ export class Tile {
   value: number;
   status: 'INITIAL' | 'FREE' | 'BOMB' | 'MARK' | 'QUESTION';
   hasMine: boolean;
+  firstExplosion: boolean;
 
   constructor(x: number, y: number) {
     this.x = x;
@@ -11,6 +12,7 @@ export class Tile {
     this.value = 0;
     this.status = 'INITIAL';
     this.hasMine = false;
+    this.firstExplosion = false;
   }
 
   select() {
