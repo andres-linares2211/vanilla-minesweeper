@@ -3,11 +3,14 @@ import { Chronometer } from './utils/Chronometer.js';
 import { paintTile } from './ui/TilePainter.js';
 import { LocalScoreboard } from './utils/LocalScoreboard.js';
 import { ScoreboardPainter } from './ui/ScoreboardPainter.js';
+import { setDefaultInputValues } from './ui/InputDefaultValues.js';
 
 const board = document.getElementById('root');
 const counter = document.getElementById('counter');
 const boardSizeInput = document.getElementById('size') as HTMLInputElement;
 const minesInput = document.getElementById('mines') as HTMLInputElement;
+
+setDefaultInputValues(boardSizeInput, minesInput);
 
 const scoreboard = new LocalScoreboard();
 const scoreboardPainte = new ScoreboardPainter();
