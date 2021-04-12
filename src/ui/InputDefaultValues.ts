@@ -6,12 +6,17 @@ export function setDefaultInputValues(sizeInput: HTMLInputElement, minesInput: H
   const mines = params.get('mines');
 
   if (size && Number.isInteger(+size)) {
-    const isInRange = +size <= +sizeInput.max && +size >= +sizeInput.min;
-    if (isInRange) sizeInput.value = size;
+    if (isInRange(sizeInput, +size)) sizeInput.value = size;
   }
 
   if (mines && Number.isInteger(+mines)) {
-    const isInRange = +mines <= +minesInput.max && +mines >= +minesInput.min;
-    if (isInRange) minesInput.value = mines;
+    if (isInRange(minesInput, +mines)) minesInput.value = mines;
   }
+}
+
+function isInRange(input: HTMLInputElement, value: number) {
+  const maxValue = +input.max;
+  const minValue = +input.min;
+
+  return value <= maxValue && value >= minValue;
 }
