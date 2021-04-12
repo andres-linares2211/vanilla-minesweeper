@@ -19,8 +19,12 @@ export class Chronometer {
     this.finalTime = performance.now();
   }
 
+  get time(): number {
+    return this.finalTime - this.initialTime;
+  }
+
   get displayTime(): string {
-    return this.formatTime(this.finalTime - this.initialTime);
+    return this.formatTime(this.time);
   }
 
   /**
