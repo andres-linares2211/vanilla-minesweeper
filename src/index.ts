@@ -1,11 +1,16 @@
 import { Board } from './game/Board.js';
-import { Chronometer } from './Chronometer.js';
+import { Chronometer } from './utils/Chronometer.js';
 import { paintTile } from './ui/TilePainter.js';
+import { LocalScoreboard } from './utils/LocalScoreboard.js';
+import { ScoreboardPainter } from './ui/ScoreboardPainter.js';
 
 const board = document.getElementById('root');
 const counter = document.getElementById('counter');
 const boardSizeInput = document.getElementById('size') as HTMLInputElement;
 const minesInput = document.getElementById('mines') as HTMLInputElement;
+
+const scoreboard = new LocalScoreboard();
+const scoreboardPainte = new ScoreboardPainter();
 
 boardSizeInput.addEventListener('change', () => {
   initialize();
@@ -24,6 +29,7 @@ initialize();
 function initialize() {
   const boardSize = boardSizeInput.value;
   const mines = minesInput.value;
+  scoreboardPainte.paint(scoreboard.getTopScores(+boardSize, +mines));
 
   game = new Board(
     +boardSize,
@@ -40,6 +46,8 @@ function initialize() {
       chronometer.stop();
       isTimeRunning = false;
       gameOver = true;
+      scoreboard.saveScore({ size: +boardSize, mines: +mines, time: chronometer.time });
+      scoreboardPainte.paint(scoreboard.getTopScores(+boardSize, +mines));
 
       if (counter) counter.innerHTML = chronometer.displayTime;
     }
