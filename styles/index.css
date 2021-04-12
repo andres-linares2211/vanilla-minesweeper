@@ -1,7 +1,40 @@
+:root {
+  --header-background: #ff0000;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  font-family: monospace;
+}
+
+.mobile-header {
+  min-height: 4rem;
+  background: var(--header-background);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+.mobile-header .hamburger-menu {
+  background: transparent;
+  border: none;
+  display: flex;
+  padding: 0.5rem;
+  margin-right: -0.5rem;
+}
+@media only screen and (min-width: 1024px) {
+  .mobile-header {
+    display: none;
+  }
+}
+
+.sidebar {
+  display: none;
 }
 
 :root {
@@ -29,7 +62,6 @@ html {
 }
 
 body {
-  display: flex;
   height: 100%;
 }
 
@@ -73,6 +105,7 @@ aside #scoreboard ol {
 }
 
 .board-container {
+  margin-top: 2rem;
   display: grid;
   place-content: center;
   flex: 1;

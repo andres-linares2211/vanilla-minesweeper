@@ -1,5 +1,8 @@
 @import './variables';
+@import './css-variables';
 @import './resets';
+
+@import './components/';
 
 :root {
   --background-color: #c0c0c0;
@@ -28,7 +31,6 @@ html {
 }
 
 body {
-  display: flex;
   height: 100%;
 }
 
@@ -72,6 +74,7 @@ aside #scoreboard ol {
 }
 
 .board-container {
+  margin-top: 2rem;
   display: grid;
   place-content: center;
   flex: 1;

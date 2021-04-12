@@ -1,2 +1,20 @@
 .mobile-header {
+  min-height: 4rem;
+  background: var(--header-background);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+
+  .hamburger-menu {
+    background: transparent;
+    border: none;
+    display: flex;
+    padding: 0.5rem;
+    margin-right: -0.5rem;
+  }
+
+  @media only screen and (min-width: map-get($breakpoints, desktop)) {
+    display: none;
+  }
 }

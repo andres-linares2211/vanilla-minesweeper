@@ -6,7 +6,8 @@
   "author": "andres-linares2211 <andres.linares@omni.pro>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc && sass styles/"
+    "build": "tsc && sass styles/",
+    "dev": "sass --watch styles/"
   },
   "devDependencies": {
     "sass": "^1.32.8",
