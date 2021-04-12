@@ -1,0 +1,11 @@
+.board-container {
+  display: grid;
+  place-content: center;
+  flex: 1;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(var(--size, 10), 50px);
+  grid-template-rows: repeat(var(--size, 10), 50px);
+}

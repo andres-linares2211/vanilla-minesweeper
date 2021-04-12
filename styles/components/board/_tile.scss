@@ -1,0 +1,38 @@
+.board > button {
+  background: var(--background-color);
+  border: var(--tile-border-size) solid var(--tile-light-border);
+  border-bottom-color: var(--tile-dark-border);
+  border-right-color: var(--tile-dark-border);
+  font-size: 2rem;
+  font-weight: bolder;
+
+  &.exploded {
+    background: var(--color-red);
+  }
+
+  &.small {
+    font-size: 1.4rem;
+  }
+
+  &:disabled {
+    color: black; /* To avoid custom browser color on emoji */
+    border: calc(var(--tile-border-size) * 0.4) solid var(--board-border-color);
+  }
+
+  $color-values: (
+    '1': var(--color-blue),
+    '2': var(--color-dark-green),
+    '3': var(--color-red),
+    '4': var(--color-dark-blue),
+    '5': var(--color-dark-red),
+    '6': var(--color-green),
+    '7': var(--color-black),
+    '8': var(--color-black),
+  );
+
+  @each $value, $color in $color-values {
+    &.value-#{$value} {
+      color: $color;
+    }
+  }
+}
