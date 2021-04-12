@@ -3,7 +3,7 @@
     "target": "es5",
     "module": "ESNext",
     "lib": ["ESNext", "DOM"],
-    "outDir": "dist",
+    "outDir": "dist/src",
     "rootDir": "src",
     "noImplicitAny": true,
     "skipLibCheck": true,
