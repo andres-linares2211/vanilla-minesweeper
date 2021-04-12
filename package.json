@@ -1,0 +1,11 @@
+{
+  "name": "minesweeper",
+  "version": "0.1.0",
+  "description": "Simple minesweeper",
+  "main": "index.js",
+  "author": "andres-linares2211 <andres.linares@omni.pro>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  }
+}
