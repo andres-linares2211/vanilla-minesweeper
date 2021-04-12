@@ -45,7 +45,6 @@ function initialize() {
       if (counter) counter.innerHTML = chronometer.displayTime;
     },
     () => {
-      alert('Ganaste!');
       chronometer.stop();
       isTimeRunning = false;
       gameOver = true;
@@ -53,6 +52,8 @@ function initialize() {
       scoreboardPainte.paint(scoreboard.getTopScores(+boardSize, +mines));
 
       if (counter) counter.innerHTML = chronometer.displayTime;
+
+      alert('Ganaste!');
     }
   );
 
