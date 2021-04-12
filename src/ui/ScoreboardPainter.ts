@@ -13,6 +13,8 @@ export class ScoreboardPainter {
   paint(scores: Score[]) {
     if (!this.listElement) return;
 
+    this.listElement.innerHTML = '';
+
     const itemElements = scores.map((score) => {
       const item = document.createElement('li');
       item.innerHTML = formatTime(score.time);
