@@ -1,3 +1,4 @@
+import { formatTime } from '../utils/index.js';
 import { Score } from '../utils/LocalScoreboard';
 
 const SCOREBOARD_ELEMENT_ID = 'scoreboard';
@@ -14,7 +15,7 @@ export class ScoreboardPainter {
 
     const itemElements = scores.map((score) => {
       const item = document.createElement('li');
-      item.innerHTML = score.time.toString();
+      item.innerHTML = formatTime(score.time);
 
       return item;
     });
