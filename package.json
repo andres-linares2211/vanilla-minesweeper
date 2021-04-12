@@ -6,6 +6,7 @@
   "author": "andres-linares2211 <andres.linares@omni.pro>",
   "license": "MIT",
   "devDependencies": {
+    "sass": "^1.32.8",
     "typescript": "^4.2.4"
   }
 }
