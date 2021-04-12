@@ -1,3 +1,18 @@
 :root {
   --header-background: #ff0000;
+
+  --background-color: #c0c0c0;
+  --board-border-color: #929292;
+
+  --tile-light-border: #fbfbfb;
+  --tile-dark-border: #848484;
+  --tile-border-size: 0.33rem;
+
+  --color-red: #ff0000;
+
+  --color-number-one: #0000ff;
+  --color-number-two: #008000;
+  --color-number-three: var(--color-red);
+  --color-number-four: #000080;
+  --color-number-five: #800000;
 }

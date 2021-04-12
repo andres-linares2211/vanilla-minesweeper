@@ -1,3 +1,10 @@
 .sidebar {
   display: none;
+  background: var(--background-color);
+  padding: 1rem;
+  width: 18rem;
+
+  @media only screen and (min-width: map-get($breakpoints, desktop)) {
+    display: block;
+  }
 }
