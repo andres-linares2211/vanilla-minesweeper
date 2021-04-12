@@ -26,7 +26,7 @@ export class LocalScoreboard {
   }
 }
 
-interface Score {
+export interface Score {
   size: number;
   mines: number;
   time: number;
