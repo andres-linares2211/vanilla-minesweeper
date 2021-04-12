@@ -12,6 +12,10 @@ html {
   font-family: monospace;
 }
 
+button {
+  cursor: pointer;
+}
+
 .mobile-header {
   min-height: 4rem;
   background: var(--header-background);
@@ -19,6 +23,7 @@ html {
   align-items: center;
   justify-content: space-between;
   padding: 0 1rem;
+  box-shadow: 2px 3px 6px rgba(15, 15, 15, 0.1);
 }
 .mobile-header .hamburger-menu {
   background: transparent;
