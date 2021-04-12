@@ -1,5 +1,11 @@
 :root {
-  --header-background: #ff0000;
+  --color-red: #ff0000;
+  --color-dark-red: #800000;
+  --color-green: #00ff00;
+  --color-dark-green: #008000;
+  --color-blue: #0000ff;
+  --color-dark-blue: #000080;
+  --color-black: #000000;
 
   --background-color: #c0c0c0;
   --board-border-color: #929292;
@@ -8,10 +14,5 @@
   --tile-dark-border: #848484;
   --tile-border-size: 0.33rem;
 
-  --color-red: #ff0000;
-  --color-dark-red: #800000;
-  --color-green: #00ff00;
-  --color-dark-green: #008000;
-  --color-blue: #0000ff;
-  --color-dark-blue: #000080;
+  --header-background: var(--color-red);
 }
