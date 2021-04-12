@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "andres-linares2211 <andres.linares@omni.pro>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc && sass styles/"
+  },
   "devDependencies": {
     "sass": "^1.32.8",
     "typescript": "^4.2.4"

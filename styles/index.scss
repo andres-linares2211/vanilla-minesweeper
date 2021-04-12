@@ -1,23 +1,22 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import './variables';
+@import './resets';
 
 :root {
   --background-color: #c0c0c0;
   --board-border-color: #929292;
+
   --tile-light-border: #fbfbfb;
   --tile-dark-border: #848484;
   --tile-border-size: 0.33rem;
+
   --color-red: #ff0000;
+
   --color-number-one: #0000ff;
   --color-number-two: #008000;
   --color-number-three: var(--color-red);
   --color-number-four: #000080;
   --color-number-five: #800000;
 }
-
 * {
   margin: 0;
   padding: 0;
@@ -104,8 +103,7 @@ aside #scoreboard ol {
 }
 
 .board > button:disabled {
-  color: black;
-  /* To avoid custom browser color on emoji */
+  color: black; /* To avoid custom browser color on emoji */
   border: calc(var(--tile-border-size) * 0.4) solid var(--board-border-color);
 }
 
@@ -128,5 +126,3 @@ aside #scoreboard ol {
 .board > button.value-5 {
   color: var(--color-number-five);
 }
-
-/*# sourceMappingURL=index.css.map */
