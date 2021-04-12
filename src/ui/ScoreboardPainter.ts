@@ -7,7 +7,7 @@ export class ScoreboardPainter {
   private listElement: HTMLUListElement | null;
 
   constructor() {
-    this.listElement = document.querySelector(`#${SCOREBOARD_ELEMENT_ID} ul`);
+    this.listElement = document.querySelector(`#${SCOREBOARD_ELEMENT_ID} ol`);
   }
 
   paint(scores: Score[]) {

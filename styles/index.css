@@ -55,6 +55,19 @@ aside form input {
   font-size: 1.2rem;
 }
 
+aside #scoreboard {
+  margin-top: 2rem;
+}
+
+aside #scoreboard h3 {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+aside #scoreboard ol {
+  list-style: inside decimal;
+}
+
 .board-container {
   display: grid;
   place-content: center;
