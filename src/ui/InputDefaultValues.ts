@@ -5,6 +5,6 @@ export function setDefaultInputValues(sizeInput: HTMLInputElement, minesInput: H
   const size = params.get('size');
   const mines = params.get('mines');
 
-  if (size) sizeInput.value = size;
-  if (mines) minesInput.value = mines;
+  if (size && Number.isInteger(+size)) sizeInput.value = size;
+  if (mines && Number.isInteger(+mines)) minesInput.value = mines;
 }
