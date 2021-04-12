@@ -12,11 +12,12 @@ export class LocalScoreboard {
     this.storage.setItem(KEY, JSON.stringify(allScores));
   }
 
-  getTopScores(limit: number = 10): Score[] {
+  getTopScores(size: number, mines: number, limit: number = 10): Score[] {
     const allScores = this.getScores();
-    allScores.sort((a, b) => a.time - b.time);
+    const scores = allScores.filter((score) => score.size === size && score.mines === mines);
+    scores.sort((a, b) => a.time - b.time);
 
-    return allScores.slice(0, limit);
+    return scores.slice(0, limit);
   }
 
   private getScores(): Score[] {

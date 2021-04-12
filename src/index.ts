@@ -29,7 +29,7 @@ initialize();
 function initialize() {
   const boardSize = boardSizeInput.value;
   const mines = minesInput.value;
-  scoreboardPainte.paint(scoreboard.getTopScores());
+  scoreboardPainte.paint(scoreboard.getTopScores(+boardSize, +mines));
 
   game = new Board(
     +boardSize,
@@ -47,7 +47,7 @@ function initialize() {
       isTimeRunning = false;
       gameOver = true;
       scoreboard.saveScore({ size: +boardSize, mines: +mines, time: chronometer.time });
-      scoreboardPainte.paint(scoreboard.getTopScores());
+      scoreboardPainte.paint(scoreboard.getTopScores(+boardSize, +mines));
 
       if (counter) counter.innerHTML = chronometer.displayTime;
     }
