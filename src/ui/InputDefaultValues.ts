@@ -2,10 +2,9 @@ export function setDefaultInputValues(sizeInput: HTMLInputElement, minesInput: H
   const queryParams = window.location.search;
   const params = new URLSearchParams(queryParams);
 
-  if (params.get('size')) {
-    sizeInput.value = params.get('size') || '10';
-  }
-  if (params.get('mines')) {
-    minesInput.value = params.get('mines') || '10';
-  }
+  const size = params.get('size');
+  const mines = params.get('mines');
+
+  if (size) sizeInput.value = size;
+  if (mines) minesInput.value = mines;
 }
